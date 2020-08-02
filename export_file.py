@@ -10,7 +10,7 @@ import numpy as np
 import glob
 
 class output_file():
-    def __init__(self,result_path,video_path,word_path,depth,area,time,map):
+    def __init__(self,result_path,video_path,word_path,depth,area,time,mapdata):
 
         self.result_path = result_path
         self.video_path = video_path
@@ -18,11 +18,11 @@ class output_file():
         self.depth = depth
         self.area = area
         self.time = time
-        self.map = map
+        self.mapdata = mapdata
         self.csv_create()
         self.line_chart_depth()
         self.line_chart_area()
-        self.map()
+        self.map_create()
         
     def csv_create(self):
         data_save = np.vstack((self.time, self.depth)).T
@@ -88,13 +88,13 @@ class output_file():
         ax.yaxis.set_label_coords(-0.053, 0.5)
         ax.xaxis.set_label_coords(0.5, -0.115)
         plt.grid(True, ls='--')
-        save_file_path = result_path + "IOT淹水面積.png"
+        save_file_path = self.result_path + "IOT淹水面積.png"
         plt.savefig(save_file_path)
         plt.show()
         plt.close()
 
     
-    def map(self):
+    def map_create(self):
         zhfont_title = mpl.font_manager.FontProperties(fname=self.word_path, size=40)
         zhfont_label = mpl.font_manager.FontProperties(fname=self.word_path, size=16)
         zhfont_label_colorbar = mpl.font_manager.FontProperties(fname=self.word_path, size=20)
@@ -105,7 +105,7 @@ class output_file():
         day_start = 27
 
         num = 0
-        for i in map:
+        for i in self.mapdata:
 
 
             data = i
