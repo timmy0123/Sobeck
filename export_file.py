@@ -137,7 +137,7 @@ class output_file():
 
             
             plt.savefig(self.video_path+str(num)+'.png')
-            filepath.append(self.video_path+'.png')
+            filepath.append(self.video_path+str(num)+'.png')
             plt.close()
             num+=1
 
