@@ -29,7 +29,7 @@ class time_bar():
         
     
     def create_time_bar(self):
-        leap_years = leap_year(int(year))
+        leap_years = leap_year(self.year)
         real_time = []
         for i in self.data_numbers:
             self.minute_start = self.minute_start + 10
@@ -58,17 +58,18 @@ class time_bar():
                                 self.month_start += 1 
 
             starttimes = str(self.year_start)+"-" + str(self.month_start) +str(day_start)+"-0"+str(hour_start)+"-0"+str(minute_start)
-            if self.minute_start < 10: 
-                if self.hour_start < 10:
-                    if self.day_start < 10:
-                        if self.month_start < 10:
-                            starttimes = str(self.year_start) + "-0" + str(self.month_start) + "-0" + str(self.hour_start) + "-0" + str(self.minute_start)
-                        else:
-                            starttimes = str(self.year_start) + "-" + str(self.month_start) + "-0" + str(self.hour_start) + "-0" + str(self.minute_start)
-                    else:
-                         starttimes = str(self.year_start) + "-0" + str(self.month_start) + "-" + str(self.hour_start) + "-0" + str(self.minute_start)
-                else:
-                    starttimes = str(self.year_start) + "-" + str(self.month_start) + "-" + str(self.hour_start) + "-" + str(self.minute_start)
-            else:starttimes = "2016-09-" +str(day_start)+"-"+str(hour_start)+"-"+str(minute_start)
+            if self.minute_start < 10: minutes_time = "0"+str(self.minute_start)
+            else: minutes_time = str(self.minute_start)
+            
+            if self.hour_start < 10: hour_time = "0"+str(self.hour_start)
+            else: hour_time = str(self.hour_start)
+
+            if self.month_start < 10: month_time = "0"+str(self.month_start)
+            else: month_time = str(self.month_start)
+
+            if self.day_start < 10: day_time = "0"+str(self.day_start)
+            else: day_time = str(self.day_start)
+               
+            starttimes = str(self.year_start) + "-" + month_time + "-" + day_time + "-" + hour_time + "-" + minutes_time
             real_time.append(starttimes)
             return real_time
