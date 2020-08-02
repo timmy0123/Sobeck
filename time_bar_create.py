@@ -29,7 +29,7 @@ class time_bar():
         
     
     def create_time_bar(self):
-        leap_years = leap_year(self.year)
+        leap_years = leap_year(self.year_start)
         real_time = []
         for i in self.data_numbers:
             self.minute_start = self.minute_start + 10
